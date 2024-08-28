@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import torch.optim as optim
 
 class TinyLLama(nn.Module):
     def __init__(self, vocab_size, embed_dim, num_layers, num_heads):
@@ -51,4 +52,6 @@ model = TinyLLama(vocab_size, embed_dim, num_layers, num_heads)
 train_data = [generate_test_data(vocab_size, seq_length, batch_size) for _ in range(100)]
 
 train_model(model, train_data, epochs=1, lr=1e-3)
+torch.save(model.state_dict(), 'tinyllama_model_parameters.pth')
+
 
